@@ -2,12 +2,16 @@ import streamlit as st
 import pandas as pd
 
 # ----------------------------
-# Simulated Weekly Data
+# Simulated Weekly Data (10 Products)
 # ----------------------------
 data = {
-    "Product": ["Biscuit", "Milk Bottle", "Sugar", "Tea Powder"],
-    "Target": [30, 50, 40, 20],
-    "Sold": [26, 49, 22, 20]
+    "Product": [
+        "Parle-G Biscuits", "Amul Full Cream Milk", "Tata Salt", "Red Label Tea",
+        "Nestle Everyday Milk Powder", "Maggi Noodles", "Sunfeast Marie Light",
+        "Fortune Soya Oil", "Colgate Toothpaste", "Bru Instant Coffee"
+    ],
+    "Target": [30, 50, 40, 20, 25, 35, 30, 20, 25, 15],
+    "Sold": [26, 49, 22, 20, 15, 34, 30, 17, 25, 15]
 }
 df = pd.DataFrame(data)
 df["Remaining"] = df["Target"] - df["Sold"]
