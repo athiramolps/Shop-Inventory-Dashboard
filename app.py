@@ -6,7 +6,7 @@ from PIL import Image
 st.set_page_config(page_title="RefilliqTrack", layout="wide")
 
 # --- Logo & Title Alignment ---
-logo = Image.open("r2.png")  # Logo image file
+logo = Image.open("logo.png")  # Logo image file
 col1, col2 = st.columns([1, 6])
 with col1:
     st.image(logo, width=50)
