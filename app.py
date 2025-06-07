@@ -50,7 +50,6 @@ data = {
         30, 20, 25, 15, 25, 20, 15, 10, 25, 35
     ]
 }
-
 df["Remaining"] = df["Target"] - df["Sold"]
 
 # Determine status
