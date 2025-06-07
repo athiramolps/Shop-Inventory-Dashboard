@@ -67,6 +67,10 @@ def emoji_label(status):
 
 filtered_df["Status"] = filtered_df["Status"].apply(emoji_label)
 
+# Add serial number starting from 1
+filtered_df = filtered_df.reset_index(drop=True)  # Reset index to ensure clean numbering
+filtered_df.insert(0, "No.", range(1, len(filtered_df) + 1))
+
 # --- Display Table ---
 st.markdown("### 📦 Product Inventory Table")
-st.dataframe(filtered_df, use_container_width=True)
+st.dataframe(filtered_df, use_container_width=True, hide_index=True)
