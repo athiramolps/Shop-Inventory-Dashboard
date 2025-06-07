@@ -1,5 +1,25 @@
-import streamlit as st
+import streamlit as st 
 import pandas as pd
+from PIL import Image
+
+# ----------------------------
+# Logo and Branding
+# ----------------------------
+st.set_page_config(page_title="RefilliqTrack", layout="centered")
+
+# Load and show logo
+logo = Image.open("logo.png")  # Make sure 'logo.png' is in your working directory
+col1, col2 = st.columns([0.15, 0.85])
+with col1:
+    st.image(logo, width=60)
+with col2:
+    st.markdown("""
+        <div style="text-align: left;">
+            <h1 style="color:#1E88E5; margin-bottom: 0;">RefilliqTrack</h1>
+            <h5 style="color:gray; margin-top: 0;">Track. Refill. Stay Ahead.</h5>
+            <p><b>Location:</b> Springfield Groceries, 45 High Street, London</p>
+        </div>
+        """, unsafe_allow_html=True)
 
 # ----------------------------
 # Simulated Weekly Data (10 Products)
@@ -26,18 +46,6 @@ def get_status(row):
         return "Sufficient"
 
 df["Status"] = df.apply(get_status, axis=1)
-
-# ----------------------------
-# Sidebar / Header
-# ----------------------------
-st.set_page_config(page_title="Shop Inventory Dashboard", layout="centered")
-
-# Title and Shop Info
-col1, col2 = st.columns([0.1, 0.9])
-with col1:
-    st.image("https://img.icons8.com/emoji/48/apple-emoji.png", width=40)
-with col2:
-    st.markdown("## **Shop Inventory Dashboard**\n123 Market St., Springfield")
 
 # ----------------------------
 # KPI Section
@@ -78,6 +86,8 @@ def status_emoji(status):
     else:
         return "🔴 Out of Stock"
 
+df_filtered = df_filtered.copy()
 df_filtered["Status"] = df_filtered["Status"].apply(status_emoji)
+
 st.markdown("### 📦 Product Inventory Table")
 st.dataframe(df_filtered, use_container_width=True)
