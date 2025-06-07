@@ -53,6 +53,7 @@ data = {
 # Create DataFrame from data
 df = pd.DataFrame(data)
 
+# Calculate Remaining stock
 df["Remaining"] = df["Target"] - df["Sold"]
 
 # Determine status
@@ -63,6 +64,7 @@ def get_status(row):
         return "Low Stock"
     else:
         return "Sufficient"
+
 df["Status"] = df.apply(get_status, axis=1)
 
 # --- KPI Cards ---
