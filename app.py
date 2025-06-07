@@ -2,20 +2,22 @@ import streamlit as st
 import pandas as pd
 from PIL import Image
 
-# Set page layout
-st.set_page_config(page_title="RefilliqTrack", layout="wide")
+# ----------------------------
+# Page Config
+# ----------------------------
+st.set_page_config(page_title="RefilliqTrack Dashboard", layout="centered")
 
-# --- Logo & Title Alignment ---
-logo = Image.open("logo.png")  # Logo image file
-col1, col2 = st.columns([1, 6])
-with col1:
-    st.image(logo, width=50)
-with col2:
-    # Logo and Title (Aligned in a single row)
+# ----------------------------
+# Header with Logo and Title
+# ----------------------------
+# Load logo
+logo = Image.open("logo.png")
+
+# Display logo and title in same row
 st.markdown(
     """
     <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 10px;">
-        <img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/logo.png" width="45">
+        <img src="logo.png" width="50">
         <div>
             <h1 style="margin: 0; color:#1E88E5;">RefilliqTrack</h1>
             <h4 style="margin: 0; color:gray;">Track. Refill. Stay Ahead.</h4>
@@ -26,8 +28,9 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
-# --- Sample Inventory Data ---
+# ----------------------------
+# Simulated Weekly Data (10 Products)
+# ----------------------------
 data = {
     "Product": [
         "Parle-G Biscuits", "Amul Full Cream Milk", "Tata Salt", "Red Label Tea",
@@ -40,7 +43,6 @@ data = {
 df = pd.DataFrame(data)
 df["Remaining"] = df["Target"] - df["Sold"]
 
-# Determine status
 def get_status(row):
     if row["Remaining"] <= 0:
         return "Out of Stock"
@@ -50,37 +52,47 @@ def get_status(row):
         return "Sufficient"
 df["Status"] = df.apply(get_status, axis=1)
 
-# --- KPI Cards ---
-total = len(df)
-sufficient = len(df[df['Status'] == 'Sufficient'])
-low = len(df[df['Status'] == 'Low Stock'])
-out = len(df[df['Status'] == 'Out of Stock'])
+# ----------------------------
+# KPI Section with Icons
+# ----------------------------
+total_products = len(df)
+well_stocked = (df["Status"] == "Sufficient").sum()
+low_stock = (df["Status"] == "Low Stock").sum()
+out_of_stock = (df["Status"] == "Out of Stock").sum()
 
-st.markdown("### 🧮 Inventory Overview")
+st.markdown("### 📊 Weekly Stock Summary")
 kpi1, kpi2, kpi3, kpi4 = st.columns(4)
-with kpi1:
-    st.markdown(f"### 🛒<br><sub>Total Products</sub><br><h2>{total}</h2>", unsafe_allow_html=True)
-with kpi2:
-    st.markdown(f"### ✅<br><sub>Well-Stocked</sub><br><h2>{sufficient}</h2>", unsafe_allow_html=True)
-with kpi3:
-    st.markdown(f"### ⚠️<br><sub>Low Stock</sub><br><h2>{low}</h2>", unsafe_allow_html=True)
-with kpi4:
-    st.markdown(f"### ❌<br><sub>Out of Stock</sub><br><h2>{out}</h2>", unsafe_allow_html=True)
+kpi1.metric("📦 Total", total_products)
+kpi2.metric("✅ Sufficient", well_stocked)
+kpi3.metric("⚠️ Low Stock", low_stock)
+kpi4.metric("❌ Out of Stock", out_of_stock)
 
-# --- Filter ---
-status_option = st.selectbox("🔍 Filter by status:", ["All", "Sufficient", "Low Stock", "Out of Stock"])
-filtered_df = df if status_option == "All" else df[df["Status"] == status_option]
+# ----------------------------
+# Filter Section
+# ----------------------------
+status_filter = st.selectbox(
+    "🔍 Filter by Stock Status:",
+    options=["All", "Sufficient", "Low Stock", "Out of Stock"],
+    index=0
+)
 
-# Add emoji to status
-def emoji_label(status):
-    return {
-        "Sufficient": "🟢 Sufficient",
-        "Low Stock": "🟡 Low Stock",
-        "Out of Stock": "🔴 Out of Stock"
-    }.get(status, status)
+if status_filter != "All":
+    df_filtered = df[df["Status"] == status_filter]
+else:
+    df_filtered = df
 
-filtered_df["Status"] = filtered_df["Status"].apply(emoji_label)
+# ----------------------------
+# Table Display with Emojis
+# ----------------------------
+def status_emoji(status):
+    if status == "Sufficient":
+        return "🟢 Sufficient"
+    elif status == "Low Stock":
+        return "🟡 Low Stock"
+    else:
+        return "🔴 Out of Stock"
 
-# --- Display Table ---
+df_filtered["Status"] = df_filtered["Status"].apply(status_emoji)
+
 st.markdown("### 📦 Product Inventory Table")
-st.dataframe(filtered_df, use_container_width=True)
+st.dataframe(df_filtered, use_container_width=True)
