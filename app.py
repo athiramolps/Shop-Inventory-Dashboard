@@ -13,26 +13,15 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-
 # --- Sample Inventory Data ---
 data = {
     "Product": [
         "Parle-G Biscuits", "Amul Full Cream Milk", "Tata Salt", "Red Label Tea",
         "Nestle Everyday Milk Powder", "Maggi Noodles", "Sunfeast Marie Light",
-        "Fortune Soya Oil", "Colgate Toothpaste", "Bru Instant Coffee",
-        "Bournvita Health Drink", "Surf Excel Detergent", "Dettol Handwash",
-        "Lifebuoy Soap", "Aashirvaad Atta", "Britannia Cheese", "Kissan Jam",
-        "Dabur Honey", "Good Day Cookies", "Nivea Cream",
-        "Pears Soap", "Vim Dishwash Bar", "Harpic Toilet Cleaner",
-        "Clinic Plus Shampoo", "Fair & Lovely Cream", "Lux Soap",
-        "Patanjali Aloe Vera Gel", "Tropicana Juice", "Paper Boat Drink",
-        "Real Mixed Fruit Juice", "Complan Nutrition", "Kellogg’s Corn Flakes",
-        "Lays Chips", "KurKure Masala", "Bingo Mad Angles",
-        "Tata Tea Gold", "Horlicks", "Dove Shampoo", "Godrej Hair Dye",
-        "Colin Glass Cleaner"
+        "Fortune Soya Oil", "Colgate Toothpaste", "Bru Instant Coffee"
     ],
-    "Target": [30, 50, 40, 20, 25, 35, 30, 20, 25, 15, 20, 45, 25, 30, 60, 18, 22, 28, 24, 10, 15, 32, 18, 20, 14, 33, 12, 16, 14, 17, 21, 19, 25, 25, 27, 22, 30, 12, 13, 11],
-    "Sold": [26, 49, 22, 20, 15, 34, 30, 17, 25, 15, 18, 42, 20, 25, 50, 16, 18, 20, 22, 9, 13, 30, 16, 18, 12, 30, 10, 15, 13, 15, 19, 17, 20, 24, 25, 21, 28, 10, 12, 10]
+    "Target": [30, 50, 40, 20, 25, 35, 30, 20, 25, 15],
+    "Sold": [26, 49, 22, 20, 15, 34, 30, 17, 25, 15]
 }
 df = pd.DataFrame(data)
 df["Remaining"] = df["Target"] - df["Sold"]
