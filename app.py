@@ -11,13 +11,21 @@ col1, col2 = st.columns([1, 6])
 with col1:
     st.image(logo, width=50)
 with col2:
-    st.markdown("""
-        <div style="margin-top:-10px;">
-            <h1 style="color:#1976D2; margin-bottom:0;">RefilliqTrack</h1>
-            <h4 style="margin-top:0; color:gray;">Track. Refill. Stay Ahead.</h4>
-            <p><b>Location:</b> Springfield Groceries, 45 High Street, London</p>
+    # Logo and Title (Aligned in a single row)
+st.markdown(
+    """
+    <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 10px;">
+        <img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/logo.png" width="45">
+        <div>
+            <h1 style="margin: 0; color:#1E88E5;">RefilliqTrack</h1>
+            <h4 style="margin: 0; color:gray;">Track. Refill. Stay Ahead.</h4>
+            <p style="margin: 0;"><b>Location:</b> Springfield Groceries, 45 High Street, London</p>
         </div>
-    """, unsafe_allow_html=True)
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 
 # --- Sample Inventory Data ---
 data = {
