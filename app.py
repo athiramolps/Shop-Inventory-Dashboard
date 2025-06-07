@@ -40,7 +40,6 @@ data = {
         25, 30, 20, 15, 35, 25, 30, 20, 15, 40,
         35, 25, 30, 20, 30, 25, 20, 15, 30, 40
     ],
-    # For Sold values, you can keep same size or add your own data; I'll keep it random below for example
     "Sold": [
         26, 49, 22, 20, 15, 34, 30, 17, 25, 15,
         35, 29, 30, 40, 40, 35, 20, 30, 15, 25,
