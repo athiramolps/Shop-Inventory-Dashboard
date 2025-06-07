@@ -13,16 +13,44 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# --- Sample Inventory Data ---
+# --- Sample Inventory Data with 60 items ---
 data = {
     "Product": [
         "Parle-G Biscuits", "Amul Full Cream Milk", "Tata Salt", "Red Label Tea",
         "Nestle Everyday Milk Powder", "Maggi Noodles", "Sunfeast Marie Light",
-        "Fortune Soya Oil", "Colgate Toothpaste", "Bru Instant Coffee"
+        "Fortune Soya Oil", "Colgate Toothpaste", "Bru Instant Coffee",
+        "Dabur Honey", "Cadbury Dairy Milk", "Tropicana Orange Juice", "Aashirvaad Atta",
+        "Lays Potato Chips", "Kellogg's Corn Flakes", "Britannia Cake", "Bournvita",
+        "Himalaya Face Wash", "Nescafe Coffee", "MTR Ready to Eat Meal", "Rin Detergent Powder",
+        "Pepsi", "Sprite", "Coca Cola", "Amul Butter", "Surf Excel Liquid", "Tide Detergent",
+        "Wheel Detergent", "Emami Fair & Handsome", "L'Oreal Shampoo", "Patanjali Aloe Vera Gel",
+        "Horlicks", "Dettol Soap", "Vaseline Petroleum Jelly", "Gillette Razor", "Fair & Lovely",
+        "Mother Dairy Paneer", "Kissan Jam", "Britannia Cheese", "Tata Tea Gold",
+        "McCain French Fries", "Bingo Mad Angles", "Dabur Chyawanprash", "Horlicks Activ-Go",
+        "Colgate Toothbrush", "Sunlight Dishwash Gel", "Fevicol Adhesive", "Britannia Butter",
+        "Maggie Sauce", "Yakult Probiotic Drink", "Bajaj Almond Hair Oil", "Dove Shampoo",
+        "Peanut Butter", "Nestle KitKat", "Cadbury Gems", "Knorr Soup", "Tata Sampann Dal",
+        "Surf Excel Matic", "Dettol Handwash", "Eveready Batteries", "Horlicks Protein Plus"
     ],
-    "Target": [30, 50, 40, 20, 25, 35, 30, 20, 25, 15],
-    "Sold": [26, 49, 22, 20, 15, 34, 30, 17, 25, 15]
+    "Target": [
+        30, 50, 40, 20, 25, 35, 30, 20, 25, 15,
+        40, 30, 35, 50, 45, 40, 25, 35, 20, 30,
+        15, 20, 30, 45, 35, 50, 40, 25, 30, 35,
+        20, 25, 30, 15, 30, 20, 25, 15, 20, 30,
+        25, 30, 20, 15, 35, 25, 30, 20, 15, 40,
+        35, 25, 30, 20, 30, 25, 20, 15, 30, 40
+    ],
+    # For Sold values, you can keep same size or add your own data; I'll keep it random below for example
+    "Sold": [
+        26, 49, 22, 20, 15, 34, 30, 17, 25, 15,
+        35, 29, 30, 40, 40, 35, 20, 30, 15, 25,
+        10, 18, 22, 40, 30, 45, 38, 20, 28, 33,
+        15, 20, 25, 10, 25, 18, 20, 10, 15, 28,
+        22, 25, 18, 10, 30, 20, 28, 15, 10, 35,
+        30, 20, 25, 15, 25, 20, 15, 10, 25, 35
+    ]
 }
+
 df = pd.DataFrame(data)
 df["Remaining"] = df["Target"] - df["Sold"]
 
