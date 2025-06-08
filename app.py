@@ -74,3 +74,15 @@ filtered_df.insert(0, "No.", range(1, len(filtered_df) + 1))
 # --- Display Table ---
 st.markdown("### 📦 Product Inventory Table")
 st.dataframe(filtered_df, use_container_width=True, hide_index=True)
+
+# --- Footer ---
+st.markdown("""
+    <hr style="margin-top: 50px;">
+    <div style="text-align: center; font-size: 14px; color: gray;">
+        © All rights reserved by <strong>Athiramol PS</strong><br>
+        Published on: <strong>June 8, 2025</strong><br>
+        This project, “<em>RefilliqTrack: A Lightweight POS-Integrated Inventory Dashboard for Small Shops</em>,”  
+        provides an intuitive inventory tracking solution designed for small business owners. Built with Streamlit,  
+        it ensures daily stock visibility with minimal user interaction, offering real-time insights sourced from existing POS systems.
+    </div>
+""", unsafe_allow_html=True)
