@@ -9,7 +9,7 @@ st.markdown("""
     <div style="margin-top:-10px;">
         <h1 style="color:#1976D2; margin-bottom:0;">RefilliqTrack</h1>
         <h4 style="margin-top:0; color:gray;">Track. Refill. Stay Ahead.</h4>
-        <p><b>Location:</b> Springfield Groceries, 45 High Street, London</p>
+        <p><b>Location:</b> Springfield Groceries, 45 High Street, Durham, UK</p>
     </div>
 """, unsafe_allow_html=True)
 
