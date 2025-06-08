@@ -80,7 +80,7 @@ st.markdown("""
     <hr style="margin-top: 50px;">
     <div style="text-align: center; font-size: 14px; color: gray;">
         © All rights reserved by <strong>Athiramol PS</strong><br>
-        Published on: <strong>June 8, 2025</strong><br>
+        Published on: <strong>June 7, 2025</strong><br>
         This project, “<em>RefilliqTrack: A Lightweight POS-Integrated Inventory Dashboard for Small Shops</em>,”  
         provides an intuitive inventory tracking solution designed for small business owners. Built with Streamlit,  
         it ensures daily stock visibility with minimal user interaction, offering real-time insights sourced from existing POS systems.
